@@ -1,5 +1,6 @@
 package com.example.quiz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         if(id == R.id.btn_yes){
             if(!(answers[count] == 0)){  //проверяем, отвечен ли вопрос ранее
                 Toast.makeText(this, "Ответ уже засчитан", Toast.LENGTH_SHORT).show();
-
             }
             if(questions.get(count).isAnswer()){
                 res = "правильно";
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             }
             Toast.makeText(this, "Вы ответили " + res, Toast.LENGTH_LONG).show();
         }
+
         else if(id == R.id.btn_no){
             if(!(answers[count] == 0)){  //проверяем, отвечен ли вопрос ранее
                 Toast.makeText(this, "Ответ уже засчитан", Toast.LENGTH_SHORT).show();
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             }
             Toast.makeText(this, "Вы ответили " + res, Toast.LENGTH_LONG).show();
         }
+
         else if(id == R.id.btn_previous){
             count--;           // Переходим к предыдущему вопросу
             if(count <= 0){   // Проверяем выход за границы массива
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
             titleTxt.setText(questions.get(count).getText()); // Выводим предыдущий вопрос
         }
+
         else if(id == R.id.btn_next){
             count++;           // Переходим к следующему вопросу
             if(count == questions.size()){   // Проверяем выход за границы массива
@@ -104,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
             }
             titleTxt.setText(questions.get(count).getText()); // Выводим следующий вопрос
         }
+
         else if(id == R.id.btn_answ){
             if(questions.get(count).isAnswer()){  //подсматриваем правильный ответ
                 res = "Да";
@@ -113,8 +117,8 @@ public class MainActivity extends AppCompatActivity {
             }
             answers[count] = 2;     //записываем в массив ответов как неправильный ответ
             Toast.makeText(this, "Правильный ответ: " + res, Toast.LENGTH_SHORT).show();
-
         }
+
         else if(id == R.id.btn_drop){                       //сброс на первый вопрос
             for(int i = 0; i < questions.size(); i++){
                 answers[i] = 0;
@@ -123,12 +127,18 @@ public class MainActivity extends AppCompatActivity {
             titleTxt.setText(questions.get(count).getText());
             Toast.makeText(this, "Викторина сброшена", Toast.LENGTH_SHORT).show();
         }
+
         else if(id == R.id.btn_answCount){               //выводим количество правильных ответов
             int answCounter = 0;
             for (int answer : answers) {
                 if (answer == 1) answCounter++;
             }
             Toast.makeText(this, "Правильных ответов: " + answCounter+" из " + questions.size(), Toast.LENGTH_SHORT).show();
+        }
+
+        else if(id == R.id.btn_custQuiz){               //переход на customQuizActivity
+            Intent intent = new Intent(this, CustomQuizActivity.class);
+            startActivity(intent);
         }
 
 

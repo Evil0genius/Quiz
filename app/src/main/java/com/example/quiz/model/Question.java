@@ -16,11 +16,27 @@ public class Question {
         this.answer = answer;
     }
 
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setAnswer(boolean answer) {
+        this.answer = answer;
+    }
+
     public String getText() {
         return text;
     }
 
     public boolean isAnswer() {
         return answer;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "Вопрос='" + text + '\'' +
+                ", ответ=" + answer +
+                '}';
     }
 }
