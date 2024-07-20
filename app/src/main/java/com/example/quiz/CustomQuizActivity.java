@@ -45,15 +45,9 @@ public class CustomQuizActivity extends AppCompatActivity {
         }
 
     }
-    public void addUser(View view) throws Exception {
+    public void addUser(View view) {
         String question = custQuestion.getText().toString();
-        String answ = custAnswer.getText().toString();
-        boolean answer;
-        if (answ.equalsIgnoreCase("true") || answ.equalsIgnoreCase("false")) {
-            answer = Boolean.parseBoolean(answ);
-        } else {
-            throw new Exception();
-        }
+        boolean answer = Boolean.parseBoolean(custAnswer.getText().toString());
         Question custQue = new Question(question, answer);
         questions.add(custQue);
         adapter.notifyDataSetChanged();
